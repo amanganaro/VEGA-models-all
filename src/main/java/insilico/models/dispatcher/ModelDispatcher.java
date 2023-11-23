@@ -59,7 +59,7 @@ public class ModelDispatcher {
     public final static String SKIN_IRRITATION = "SKIN_IRRITATION";
     public final static String SKIN_IRRITATION_CORAL = "SKIN_IRRITATION_CORAL";
     public final static String SKIN_IRRITATION_SARPY = "SKIN_IRRITATION_SARPY";
-    public final static String EYE_IRRITATION = "EYE IRRITATION";
+    public final static String EYE_IRRITATION = "EYE_IRRITATION";
     public final static String EYE_IRRITATION_KNN = "EYE_IRRITATION_KNN";
     public final static String EYE_IRRITATION_SARPY = "EYE_IRRITATION_SARPY";
     public final static String CHROM_CORAL = "CHROM_CORAL";
@@ -168,6 +168,24 @@ public class ModelDispatcher {
         }
     }
 
+
+    public void PrintModelsList() throws Exception {
+        ArrayList<String> res = new ArrayList<>();
+
+        ArrayList<VegaEndpoint> Endpoints = GetOrganizedModels();
+        int idx = 1;
+        for (VegaEndpoint EP : Endpoints) {
+            for (String modelTag : EP.Models) {
+                InsilicoModel model = GetModelFromTag(modelTag);
+                res.add(idx++ + "\t" + SECTION_NAMES[EP.Section] + "\t" + modelTag + "\t"
+                        + model.getInfo().getName() + "\t" + model.getInfo().getVersion() );
+            }
+        }
+
+        System.out.println("No.\tSection\tTag\tModel\tVersion");
+        for (String s : res)
+            System.out.println(s);
+    }
 
     /**
      *

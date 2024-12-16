@@ -1,10 +1,16 @@
 package insilico.models.dispatcher;
 
+import insilico.apicalcardiotox.ApicalCardioTox;
+import insilico.core.exception.GenericFailureException;
 import insilico.core.exception.InitFailureException;
 import insilico.core.model.InsilicoModel;
 import insilico.core.model.InsilicoModelConsensus;
+import insilico.dilibayer.ismDiliBayer;
+import insilico.mitochondrial_dysfunction.MitochondrialDysfunction;
 import insilico.models.exception.ModelNotFoundException;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 
@@ -144,6 +150,9 @@ public class ModelDispatcher {
     public final static String TISSUEBLOOD_INERIS = "TISSUEBLOOD_INERIS";
     public final static String TOTALHL_QSARINS = "TOTALHL_QSARINS";
     public final static String KM_ARNOT = "KM_ARNOT";
+    public final static String DILI_BAYER = "DILI_BAYER";
+    public final static String MITOCHONDRIAL_DYSFUNCTION = "MITOCHONDRIAL_DYSFUNCTION";
+    public final static String APICAL_CARDIO_TOX = "APICAL_CARDIO_TOX";
 
 
     // supporting class to organize endpoints
@@ -304,15 +313,15 @@ public class ModelDispatcher {
 
         ep = new VegaEndpoint("Hepatotoxicity", SECTION_HUMAN);
         ep.AddModel(HEPA_IRFMN);
-        // aggiungere qui DILI
+        ep.AddModel(DILI_BAYER);
         Endpoints.add(ep);
 
         ep = new VegaEndpoint("Cardiotoxicity", SECTION_HUMAN);
-        // aggiungere qui apical cardiotoxicity
+        ep.AddModel(APICAL_CARDIO_TOX);
         Endpoints.add(ep);
 
         ep = new VegaEndpoint("Mitochondrial dysfunction", SECTION_HUMAN);
-        // aggiungere qui apical Mitochondrial dysfunction
+        ep.AddModel(MITOCHONDRIAL_DYSFUNCTION);
         Endpoints.add(ep);
 
 
@@ -490,7 +499,7 @@ public class ModelDispatcher {
      * @throws Exception
      * @throws InitFailureException
      */
-    public static InsilicoModel GetModelFromTag(String Tag) throws ModelNotFoundException, InitFailureException {
+    public static InsilicoModel GetModelFromTag(String Tag) throws ModelNotFoundException, InitFailureException, GenericFailureException, IOException, URISyntaxException, InterruptedException {
 
         InsilicoModel selectedModel = null;
         switch (Tag) {
@@ -829,6 +838,15 @@ public class ModelDispatcher {
                 break;
             case KM_ARNOT:
                 selectedModel = new insilico.km_arnot.ismKmArnot();
+                break;
+            case DILI_BAYER:
+                selectedModel = new ismDiliBayer(false);
+                break;
+            case APICAL_CARDIO_TOX:
+                selectedModel = new ApicalCardioTox(false);
+                break;
+            case MITOCHONDRIAL_DYSFUNCTION:
+                selectedModel = new MitochondrialDysfunction(false);
                 break;
 
             default:

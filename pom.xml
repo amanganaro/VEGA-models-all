@@ -6,7 +6,7 @@
 
     <groupId>InSilico</groupId>
     <artifactId>VegaModels-All</artifactId>
-    <version>1.2.3</version>
+    <version>1.2.4</version>
 
     <properties>
         <java.version>11</java.version>
@@ -45,6 +45,12 @@
             <groupId>InSilico</groupId>
             <artifactId>VegaModels-GlucocorticoidReceptor</artifactId>
             <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>InSilico</groupId>
+            <artifactId>VegaModels-SteroidogenesisOberon</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
 

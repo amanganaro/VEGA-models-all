@@ -72,6 +72,7 @@ public class ModelDispatcher {
     public final static String TRBETA_NRMEA = "TRBETA_NRMEA";
     public final static String GLUCO_RECEPTOR = "GLUCO_RECEPTOR";
     public final static String TPO_OBERON = "TPO_OBERON";
+    public final static String STEROIDOGENESIS_OBERON = "STERO_OBERON";
     public final static String ED_SCREEN = "ED_SCREEN";
     public final static String NOAEL_CONCERT_CORAL = "NOAEL_CONCERT_CORAL";
     public final static String NOAEL_CORAL = "NOAEL_CORAL";
@@ -278,6 +279,10 @@ public class ModelDispatcher {
         ep.AddModel(TPO_OBERON);
         Endpoints.add(ep);
 
+        ep = new VegaEndpoint("Steroidogenesis activity", SECTION_HUMAN);
+        ep.AddModel(STEROIDOGENESIS_OBERON);
+        Endpoints.add(ep);
+
         ep = new VegaEndpoint("Endocrine Disruptor activity", SECTION_HUMAN);
         ep.AddModel(ED_SCREEN);
         Endpoints.add(ep);
@@ -299,6 +304,15 @@ public class ModelDispatcher {
 
         ep = new VegaEndpoint("Hepatotoxicity", SECTION_HUMAN);
         ep.AddModel(HEPA_IRFMN);
+        // aggiungere qui DILI
+        Endpoints.add(ep);
+
+        ep = new VegaEndpoint("Cardiotoxicity", SECTION_HUMAN);
+        // aggiungere qui apical cardiotoxicity
+        Endpoints.add(ep);
+
+        ep = new VegaEndpoint("Mitochondrial dysfunction", SECTION_HUMAN);
+        // aggiungere qui apical Mitochondrial dysfunction
         Endpoints.add(ep);
 
 
@@ -599,6 +613,9 @@ public class ModelDispatcher {
                 break;
             case TPO_OBERON:
                 selectedModel = new insilico.tpo_oberon.ismTpoOberon();
+                break;
+            case STEROIDOGENESIS_OBERON:
+                selectedModel = new insilico.steroidogenesis.ismSteroidogenesis();
                 break;
             case ED_SCREEN:
                 selectedModel = new insilico.endocrine_disruptors_irfmn.ismEndocrineDisruptorsIRFMN();

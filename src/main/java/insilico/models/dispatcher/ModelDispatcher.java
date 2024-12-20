@@ -5,6 +5,7 @@ import insilico.core.exception.GenericFailureException;
 import insilico.core.exception.InitFailureException;
 import insilico.core.model.InsilicoModel;
 import insilico.core.model.InsilicoModelConsensus;
+import insilico.core.model.runner.iInsilicoModelRunnerMessenger;
 import insilico.dilibayer.ismDiliBayer;
 import insilico.mitochondrial_dysfunction.MitochondrialDysfunction;
 import insilico.models.exception.ModelNotFoundException;
@@ -847,6 +848,363 @@ public class ModelDispatcher {
                 break;
             case MITOCHONDRIAL_DYSFUNCTION:
                 selectedModel = new MitochondrialDysfunction(false);
+                break;
+
+            default:
+                throw new ModelNotFoundException("No model found for tag: " + Tag);
+        }
+
+        return selectedModel;
+    }
+
+    public static InsilicoModel GetModelFromTag(String Tag, iInsilicoModelRunnerMessenger messenger) throws ModelNotFoundException, InitFailureException, GenericFailureException, IOException, URISyntaxException, InterruptedException {
+
+        InsilicoModel selectedModel = null;
+        switch (Tag) {
+            case MUTA_CAESAR:
+                selectedModel = new insilico.mutagenicity_caesar.ismMutagenicityCaesar();
+                break;
+            case MUTA_ISS:
+                selectedModel = new insilico.mutagenicity_bb.ismMutagenicityBB();
+                break;
+            case MUTA_SARPY:
+                selectedModel = new insilico.mutagenicity_sarpy.ismMutagenicitySarpy();
+                break;
+            case MUTA_KNN:
+                selectedModel = new insilico.mutagenicity_knn.ismMutagenicityKnn();
+                break;
+            case MUTA_AMINES:
+                selectedModel = new insilico.mutagenicity_amines.ismMutagenicityAmines();
+                break;
+            case DEVTOX_CAESAR:
+                selectedModel = new insilico.devtox_caesar.ismDevtoxCaesar();
+                break;
+            case DEVTOX_PG:
+                selectedModel = new insilico.devtox_pg.ismDevToxPG();
+                break;
+            case CARC_CAESAR:
+                selectedModel = new insilico.carcinogenicity_caesar.ismCarcinogenicityCaesar();
+                break;
+            case CARC_ISS:
+                selectedModel = new insilico.carcinogenicity_bb.ismCarcinogenicityBB();
+                break;
+            case CARC_ISSCAN_CGX:
+                selectedModel = new insilico.carcinogenicity_isscancgx.ismCarcinogenicityIsscanCgx();
+                break;
+            case CARC_ANTARES:
+                selectedModel = new insilico.carcinogenicity_antares.ismCarcinogenicityAntares();
+                break;
+            case CARC_SFO_CLASS:
+                selectedModel = new insilico.carcinogenicity_sfoclassification.ismCarcinogenicitySFOClassification();
+                break;
+            case CARC_SFO_REGR:
+                selectedModel = new insilico.carcinogenicity_sforegression.ismCarcinogenicitySFORegression();
+                break;
+            case CARC_SFI_CLASS:
+                selectedModel = new insilico.carcinogenicity_sfi_classification.ismCarcinogenicitySFIClassification();
+                break;
+            case CARC_SFI_REGR:
+                selectedModel = new insilico.carcinogenicity_sfiregression.ismCarcinogenicitySFIRegression();
+                break;
+            case CARCINOGENICTY_MALE:
+                selectedModel = new insilico.carcinogenicity_rat_male.ismCarcinogenicityRatMale();
+                break;
+            case CARCINOGENICTY_FEMALE:
+                selectedModel = new insilico.carcinogenicity_rat_female.ismCarcinogenicityRatFemale();
+                break;
+            case LD50_KNN:
+                selectedModel = new insilico.ld50.ismLD50();
+                break;
+            case SKIN_CAESAR:
+                selectedModel = new insilico.skin_caesar.ismSkinCaesar();
+                break;
+            case SKIN_IRFMN:
+                selectedModel = new insilico.skin_irfmn.ismSkinIRFMN();
+                break;
+            case SKIN_NCSTOX:
+                selectedModel = new insilico.skin_cosmetics.ismSkinCosmetics();
+                break;
+            case SKIN_SENSITIZATION_TOXTREE:
+                selectedModel = new insilico.skin_sensitization_toxtree.ismSkinSensitizationToxTree();
+                break;
+            case SKIN_SENSITIZATION_CONCERT:
+                selectedModel = new insilico.skin_sensitization_concert.ismSkinSensitizationConcert();
+                break;
+            case SKIN_SENSITIZATION_SARPY:
+                selectedModel = new insilico.skin_sensitization_sarpy.ismSkinSensitizationSarpy();
+                break;
+            case SKIN_IRRITATION:
+                selectedModel = new insilico.skin_irritation.ismSkinIrritation();
+                break;
+            case SKIN_IRRITATION_CORAL:
+                selectedModel = new insilico.skin_irritation_coral.ismSkinIrritationCoral();
+                break;
+            case SKIN_IRRITATION_SARPY:
+                selectedModel = new insilico.skin_irritation_sarpy.ismSkinIrritationSarpy();
+                break;
+            case EYE_IRRITATION:
+                selectedModel = new insilico.eye_irritation.ismEyeIrritation();
+                break;
+            case EYE_IRRITATION_KNN:
+                selectedModel = new insilico.eye_irritation_knn.ismEyeIrritationKnn();
+                break;
+            case EYE_IRRITATION_SARPY:
+                selectedModel = new insilico.eye_irritation_sarpy.ismEyeIrritationSarpy();
+                break;
+            case CHROM_CORAL:
+                selectedModel = new insilico.chromosomal_coral.ismChromosomalAberrationCoral();
+                break;
+            case MNVITRO_VERMEER:
+                selectedModel = new insilico.micronculeus_vitro.ismMicronucleusInVitro();
+                break;
+            case MNVIVO_IRFMN:
+                selectedModel = new insilico.micronuclueus_vivo.ismMicronucleusInVivo();
+                break;
+            case ESTROGEN_CERAPP:
+                selectedModel = new insilico.rba_cerapp.ismEstrogenBindingCerapp();
+                break;
+            case RBA_IRFMN:
+                selectedModel = new insilico.rba_irfmn.ismRbaIRFMN();
+                break;
+            case ANDROGEN_COMPARA:
+                selectedModel = new insilico.rba_compara_irfmn.ismAndrogenBindingComparaIRFMN();
+                break;
+            case TRALPHA_NRMEA:
+                selectedModel = new insilico.thyroid_tralpha_nrmea.ismTRAlphaNRMEA();
+                break;
+            case TRBETA_NRMEA:
+                selectedModel = new insilico.thyroid_trbeta_nrmea.ismTRBetaNRMEA();
+                break;
+            case GLUCO_RECEPTOR:
+                selectedModel = new insilico.glucocorticoid_receptor.ismGlucocorticoidReceptor();
+                break;
+            case TPO_OBERON:
+                selectedModel = new insilico.tpo_oberon.ismTpoOberon();
+                break;
+            case STEROIDOGENESIS_OBERON:
+                selectedModel = new insilico.steroidogenesis.ismSteroidogenesis();
+                break;
+            case ED_SCREEN:
+                selectedModel = new insilico.endocrine_disruptors_irfmn.ismEndocrineDisruptorsIRFMN();
+                break;
+            case NOAEL_CONCERT_CORAL:
+                selectedModel = new insilico.noael_general_coral.ismNoaelGeneralCoral();
+                break;
+            case NOAEL_CORAL:
+                selectedModel = new insilico.noel_coral.ismNoaelCoral();
+                break;
+            case NOAEL_LIVER_CORAL:
+                selectedModel = new insilico.noael_coral_liver.ismNoaelCoralLiver();
+                break;
+            case LOAEL_CONCERT_CORAL:
+                selectedModel = new insilico.loael_general_coral.ismLoaelGeneralCoral();
+                break;
+            case LOEL_LIVER_CORAL:
+                selectedModel = new insilico.loael_coral_liver.ismLoaelCoralLiver();
+                break;
+            case CRAMER_TOXTREE:
+                selectedModel = new insilico.cramer_toxtree.ismCramerToxtree();
+                break;
+            case HEPA_IRFMN:
+                selectedModel = new insilico.hepatoxicty_irfmn.ismHepatotoxicityIrfmn();
+                break;
+            case BCF_CAESAR:
+                selectedModel = new insilico.bcf_caesar.ismBCFCaesar();
+                break;
+            case BCF_MEYLAN:
+                selectedModel = new insilico.bcf_meylan.ismBCFMeylan();
+                break;
+            case BCF_ARNOTGOBAS:
+                selectedModel = new insilico.bcf_arnotgobas.ismBCFArnotGobas();
+                break;
+            case BCF_KNN:
+                selectedModel = new insilico.bcf_knn.ismBCFKnn();
+                break;
+            case FISH_LC50:
+                selectedModel = new insilico.fish_lc50.ismFishLC50();
+                break;
+            case FISH_NIC:
+                selectedModel = new insilico.fish_nic.ismFishNic();
+                break;
+            case FISH_KNN:
+                selectedModel = new insilico.fish_knn.ismFishKnn();
+                break;
+            case FISH_IRFMN:
+                selectedModel = new insilico.fish_irfmn.ismFishIRFMN();
+                break;
+            case FISH_COMBASE:
+                selectedModel = new insilico.fish_combase.ismFishCombase();
+                break;
+            case FATHEAD_EPA:
+                selectedModel = new insilico.fathead_epa.ismFatheadEPA();
+                break;
+            case FATHEAD_KNN:
+                selectedModel = new insilico.fathead_knn.ismFatheadKnn();
+                break;
+            case DAPHNIA_EC50:
+                selectedModel = new insilico.daphnia_ec50.ismDaphniaEC50();
+                break;
+            case DAPHNIA_EPA:
+                selectedModel = new insilico.daphnia_epa.ismDaphniaEPA();
+                break;
+            case DAPHNIA_DEMETRA:
+                selectedModel = new insilico.daphnia_demetra.ismDaphniaDemetra();
+                break;
+            case DAPHNIA_COMBASE:
+                selectedModel = new insilico.daphnia_combase.ismDaphniaCombase();
+                break;
+            case GUPPY_KNN:
+                selectedModel = new insilico.guppy_knn.ismGuppyKnn();
+                break;
+            case ALGAE_EC50:
+                selectedModel = new insilico.algae_ec50.ismAlgaeEC50();
+                break;
+            case ALGAE_COMBASECLASS:
+                selectedModel = new insilico.algae_combaseclass.ismAlgaeCombaseClass();
+                break;
+            case ALGAE_COMBASEEC50:
+                selectedModel = new insilico.algae_combaseEC50.ismAlgaeCombaseEC50();
+                break;
+            case FISH_NOEC:
+                selectedModel = new insilico.fish_noec.ismFishNOEC();
+                break;
+            case DAPHNIA_NOEC:
+                selectedModel = new insilico.daphnia_noec.ismDaphniaNOEC();
+                break;
+            case ALGAE_NOEC:
+                selectedModel = new insilico.algae_noec.ismAlgaeNOEC();
+                break;
+            case VERHAAR_TOXTREE:
+                selectedModel = new insilico.verhaar_toxtree.ismVerhaarToxtree();
+                break;
+            case MOA_EPA:
+                selectedModel = new insilico.moa_epa.ismMoaEpa();
+                break;
+            case MOA_IRFMN:
+                selectedModel = new insilico.moa_irfmn.ismMoaIrfmn();
+                break;
+            case BEE_KNN:
+                selectedModel = new insilico.bee_knn.ismBeeKnn();
+                break;
+            case EW_TOXICITY:
+                selectedModel = new insilico.earthworm_toxicity.ismEarthworkToxicity();
+                break;
+            case SLUDGE_COMBASECLASS:
+                selectedModel = new insilico.sludge_combaseclass.ismSludgeCombaseClass();
+                break;
+            case SLUDGE_COMBASEEC50:
+                selectedModel = new insilico.sludge_combaseEC50.ismSludgeCombaseEC50();
+                break;
+            case ZEBRAFISH_CORAL:
+                selectedModel = new insilico.zebrafish_coral.ismZebrafishCoral();
+                break;
+            case READYBIO_IRFMN:
+                selectedModel = new insilico.readybio_irfmn.ismReadyBioIRFMN();
+                break;
+            case PERS_SED:
+                selectedModel = new insilico.persistence_sediment_irfmn.ismPersistenceSedimentIrfmn();
+                break;
+            case PERS_SED_QUANT:
+                selectedModel = new insilico.persistence_sediment_quantitative_irfmn.ismPersistenceSedimentQuantitativeIrfmn();
+                break;
+            case PERS_SOIL:
+                selectedModel = new insilico.persistence_soil_irfmn.ismPersistenceSoilIrfmn();
+                break;
+            case PERS_SOIL_QUANT:
+                selectedModel = new insilico.persistence_soil_quantitative_irfmn.ismPersistenceSoilQuantitativeIrfmn();
+                break;
+            case PERS_WAT:
+                selectedModel = new insilico.persistence_water_irfmn.ismPersistenceWaterIrfmn();
+                break;
+            case PERS_WATER_QUANT:
+                selectedModel = new insilico.persistence_quantative_water_irfmn.ismPersistenceWaterQuantitativeIrfmn();
+                break;
+            case PERS_AIR_CORAL:
+                selectedModel = new insilico.persistence_air_coral.ismPersistenceAirCoral();
+                break;
+            case LOGP_MEYLAN:
+                selectedModel = new insilico.meylanlogp.ismLogPMeylan();
+                break;
+            case LOGP_MLOGP:
+                selectedModel = new insilico.logp_mlogp.ismLogPMLogP();
+                break;
+            case LOGP_ALOGP:
+                selectedModel = new insilico.logp_alogp.ismLogPALogP();
+                break;
+            case WS_IRFMN:
+                selectedModel = new insilico.watersolubility.ismWaterSolubilityIRFMN();
+                break;
+            case VAPOUR_PRESSURE:
+                selectedModel = new insilico.vapour_pressure.ismVapourPressure();
+                break;
+            case MELTING_POINT:
+                selectedModel = new insilico.melting_point.ismMeltingPoint();
+                break;
+            case MELTING_POINT_KNN:
+                selectedModel = new insilico.melting_point_knn.ismMeltingPointKnn();
+                break;
+            case HYDROLYSIS_CORAL:
+                selectedModel = new insilico.hydrolysis_coral.ismHydrolysisCoral();
+                break;
+            case HENRY_OPERA:
+                selectedModel = new insilico.henryslaw.ismHenrysLawOpera();
+                break;
+            case KOA_OPERA:
+                selectedModel = new insilico.koa_opera.ismKoaOpera();
+                break;
+            case KOC_OPERA:
+                selectedModel = new insilico.koc_opera.ismKocOpera();
+                break;
+            case PPB_LOGK:
+                selectedModel = new insilico.logk.ismLogK();
+                break;
+            case PPB_CORAL:
+                selectedModel = new insilico.ppb_coral.ismPPBCoral();
+                break;
+            case AROM_IRMFN:
+                selectedModel = new insilico.aromatase_irfmn.ismAromataseIRFMN();
+                break;
+            case AROM_TOX21:
+                selectedModel = new insilico.aromatase_activity.ismAromataseTox21();
+                break;
+            case PGP_NIC:
+                selectedModel = new insilico.pgp_nic.ismPgpNic();
+                break;
+            case HEPA_PXRUP:
+                selectedModel = new insilico.pxr_up.ismPxrUp();
+                break;
+            case HEPA_PPARGUP:
+                selectedModel = new insilico.pparg_up.ismPPARGup();
+                break;
+            case HEPA_PPARAUP:
+                selectedModel = new insilico.ppara_up.ismPPARAUp();
+                break;
+            case HEPA_NRF2:
+                selectedModel = new insilico.nrf2_up.ismNRF2Up();
+                break;
+            case SKINPERM_POTTS:
+                selectedModel = new insilico.skin_permeation_potts.ismSkinPermeationPotts();
+                break;
+            case SKINPERM_TENBERGE:
+                selectedModel = new insilico.skin_permeation_tenberge.ismSkinPermeationTenBerge();
+                break;
+            case TISSUEBLOOD_INERIS:
+                selectedModel = new insilico.tissueblood_ineris.ismTissueBloodIneris();
+                break;
+            case TOTALHL_QSARINS:
+                selectedModel = new insilico.totalhl_qsarins.ismTotalHLQsarins();
+                break;
+            case KM_ARNOT:
+                selectedModel = new insilico.km_arnot.ismKmArnot();
+                break;
+            case DILI_BAYER:
+                selectedModel = new ismDiliBayer(false, messenger);
+                break;
+            case APICAL_CARDIO_TOX:
+                selectedModel = new ApicalCardioTox(false, messenger);
+                break;
+            case MITOCHONDRIAL_DYSFUNCTION:
+                selectedModel = new MitochondrialDysfunction(false, messenger);
                 break;
 
             default:

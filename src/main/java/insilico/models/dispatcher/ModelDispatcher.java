@@ -857,7 +857,7 @@ public class ModelDispatcher {
         return selectedModel;
     }
 
-    public static InsilicoModel GetModelFromTag(String Tag, iInsilicoModelRunnerMessenger messenger) throws ModelNotFoundException, InitFailureException, GenericFailureException, IOException, URISyntaxException, InterruptedException {
+    public static InsilicoModel GetModelFromTag(String Tag, iInsilicoModelRunnerMessenger messenger, boolean bypassCondaCheck) throws ModelNotFoundException, InitFailureException, GenericFailureException, IOException, URISyntaxException, InterruptedException {
 
         InsilicoModel selectedModel = null;
         switch (Tag) {
@@ -1198,13 +1198,13 @@ public class ModelDispatcher {
                 selectedModel = new insilico.km_arnot.ismKmArnot();
                 break;
             case DILI_BAYER:
-                selectedModel = new ismDiliBayer(false, messenger);
+                selectedModel = new ismDiliBayer(bypassCondaCheck, messenger);
                 break;
             case APICAL_CARDIO_TOX:
-                selectedModel = new ApicalCardioTox(false, messenger);
+                selectedModel = new ApicalCardioTox(bypassCondaCheck, messenger);
                 break;
             case MITOCHONDRIAL_DYSFUNCTION:
-                selectedModel = new MitochondrialDysfunction(false, messenger);
+                selectedModel = new MitochondrialDysfunction(bypassCondaCheck, messenger);
                 break;
 
             default:

@@ -841,13 +841,13 @@ public class ModelDispatcher {
                 selectedModel = new insilico.km_arnot.ismKmArnot();
                 break;
             case DILI_BAYER:
-                selectedModel = new ismDiliBayer(false);
+                selectedModel = new ismDiliBayer(false, null);
                 break;
             case APICAL_CARDIO_TOX:
-                selectedModel = new ApicalCardioTox(false);
+                selectedModel = new ApicalCardioTox(false, null);
                 break;
             case MITOCHONDRIAL_DYSFUNCTION:
-                selectedModel = new MitochondrialDysfunction(false);
+                selectedModel = new MitochondrialDysfunction(false, null);
                 break;
 
             default:

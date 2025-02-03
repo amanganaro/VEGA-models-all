@@ -1,6 +1,7 @@
 package insilico.models.dispatcher;
 
 import insilico.apicalcardiotox.ApicalCardioTox;
+import insilico.cardiotoxMultitask.CardioToxMultitask;
 import insilico.core.exception.GenericFailureException;
 import insilico.core.exception.InitFailureException;
 import insilico.core.model.InsilicoModel;
@@ -154,6 +155,7 @@ public class ModelDispatcher {
     public final static String DILI_BAYER = "DILI_BAYER";
     public final static String MITOCHONDRIAL_DYSFUNCTION = "MITOCHONDRIAL_DYSFUNCTION";
     public final static String APICAL_CARDIO_TOX = "APICAL_CARDIO_TOX";
+    public final static String CARDIO_TOX_MULTITASK = "CARDIO_TOX_MULTITASK";
 
 
     // supporting class to organize endpoints
@@ -319,6 +321,7 @@ public class ModelDispatcher {
 
         ep = new VegaEndpoint("Cardiotoxicity", SECTION_HUMAN);
         ep.AddModel(APICAL_CARDIO_TOX);
+        ep.AddModel(CARDIO_TOX_MULTITASK);
         Endpoints.add(ep);
 
         ep = new VegaEndpoint("Mitochondrial dysfunction", SECTION_HUMAN);
@@ -849,6 +852,9 @@ public class ModelDispatcher {
             case MITOCHONDRIAL_DYSFUNCTION:
                 selectedModel = new MitochondrialDysfunction(false, null);
                 break;
+            case CARDIO_TOX_MULTITASK:
+                selectedModel = new CardioToxMultitask(false, null);
+                break;
 
             default:
                 throw new ModelNotFoundException("No model found for tag: " + Tag);
@@ -1205,6 +1211,9 @@ public class ModelDispatcher {
                 break;
             case MITOCHONDRIAL_DYSFUNCTION:
                 selectedModel = new MitochondrialDysfunction(bypassCondaCheck, messenger);
+                break;
+            case CARDIO_TOX_MULTITASK:
+                selectedModel = new CardioToxMultitask(bypassCondaCheck, messenger);
                 break;
 
             default:

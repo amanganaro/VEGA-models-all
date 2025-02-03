@@ -753,6 +753,12 @@
             <version>1.0.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>InSilico</groupId>
+            <artifactId>VegaModels-CardioToxMultitask</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>

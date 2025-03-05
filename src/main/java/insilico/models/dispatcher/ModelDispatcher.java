@@ -503,7 +503,7 @@ public class ModelDispatcher {
      * @throws Exception
      * @throws InitFailureException
      */
-    public static InsilicoModel GetModelFromTag(String Tag) throws ModelNotFoundException, InitFailureException, GenericFailureException, IOException, URISyntaxException, InterruptedException {
+    public static InsilicoModel GetModelFromTag(String Tag) throws ModelNotFoundException, InitFailureException, GenericFailureException {
 
         InsilicoModel selectedModel = null;
         switch (Tag) {
@@ -863,7 +863,7 @@ public class ModelDispatcher {
         return selectedModel;
     }
 
-    public static InsilicoModel GetModelFromTag(String Tag, iInsilicoModelRunnerMessenger messenger, boolean bypassCondaCheck) throws ModelNotFoundException, InitFailureException, GenericFailureException, IOException, URISyntaxException, InterruptedException {
+    public static InsilicoModel GetModelFromTag(String Tag, iInsilicoModelRunnerMessenger messenger, boolean bypassCondaCheck) throws ModelNotFoundException, InitFailureException, GenericFailureException{
 
         InsilicoModel selectedModel = null;
         switch (Tag) {
@@ -1246,5 +1246,4 @@ public class ModelDispatcher {
 
         return selectedModel;
     }
-
 }

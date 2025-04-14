@@ -152,10 +152,10 @@ public class ModelDispatcher {
     public final static String TISSUEBLOOD_INERIS = "TISSUEBLOOD_INERIS";
     public final static String TOTALHL_QSARINS = "TOTALHL_QSARINS";
     public final static String KM_ARNOT = "KM_ARNOT";
-    public final static String DILI_BAYER = "DILI_BAYER";
-    public final static String MITOCHONDRIAL_DYSFUNCTION = "MITOCHONDRIAL_DYSFUNCTION";
-    public final static String APICAL_CARDIO_TOX = "APICAL_CARDIO_TOX";
-    public final static String CARDIO_TOX_MULTITASK = "CARDIO_TOX_MULTITASK";
+    public final static String DILI_BAYER = "DILI_ONTOX";
+    public final static String MITOCHONDRIAL_DYSFUNCTION = "MITO_DYSF";
+    public final static String APICAL_CARDIO_TOX = "API_CARDIO";
+    public final static String CARDIO_TOX_MULTITASK = "CARDIO_MULTITASK";
 
 
     // supporting class to organize endpoints
@@ -181,6 +181,21 @@ public class ModelDispatcher {
         }
     }
 
+    public static class VegaEndpointWithClass {
+        public String Name;
+        public int Section;
+        public ArrayList<InsilicoModel> Models;
+
+        public VegaEndpointWithClass(String name, int Section) {
+            Name = name;
+            this.Section = Section;
+            Models = new ArrayList<>();
+        }
+
+        public void addModel(InsilicoModel model) {
+            this.Models.add(model);
+        }
+    }
 
     public void PrintModelsList() throws Exception {
         ArrayList<String> res = new ArrayList<>();
@@ -492,6 +507,294 @@ public class ModelDispatcher {
 
 
         return Endpoints;
+    }
+
+    public ArrayList<VegaEndpointWithClass> GetOrganizedModelList() throws InitFailureException, GenericFailureException {
+        ArrayList<VegaEndpointWithClass> endpointsList = new ArrayList<>();
+        VegaEndpointWithClass ep;
+
+        ep = new VegaEndpointWithClass("Mutagenicity (Ames test)", SECTION_HUMAN);
+        ep.addModel(new insilico.mutagenicity_caesar.ismMutagenicityCaesar());
+        ep.addModel(new insilico.mutagenicity_bb.ismMutagenicityBB());
+        ep.addModel(new insilico.mutagenicity_sarpy.ismMutagenicitySarpy());
+        ep.addModel(new insilico.mutagenicity_knn.ismMutagenicityKnn());
+        ep.addModel(new insilico.mutagenicity_amines.ismMutagenicityAmines());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Developmental toxicity", SECTION_HUMAN);
+        ep.addModel(new insilico.devtox_caesar.ismDevtoxCaesar());
+        ep.addModel(new insilico.devtox_pg.ismDevToxPG());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Carcinogenicity", SECTION_HUMAN);
+        ep.addModel(new insilico.carcinogenicity_caesar.ismCarcinogenicityCaesar());
+        ep.addModel(new insilico.carcinogenicity_bb.ismCarcinogenicityBB());
+        ep.addModel(new insilico.carcinogenicity_isscancgx.ismCarcinogenicityIsscanCgx());
+        ep.addModel(new insilico.carcinogenicity_antares.ismCarcinogenicityAntares());
+        ep.addModel(new insilico.carcinogenicity_sfoclassification.ismCarcinogenicitySFOClassification());
+        ep.addModel(new insilico.carcinogenicity_sforegression.ismCarcinogenicitySFORegression());
+        ep.addModel(new insilico.carcinogenicity_sfi_classification.ismCarcinogenicitySFIClassification());
+        ep.addModel(new insilico.carcinogenicity_sfiregression.ismCarcinogenicitySFIRegression());
+        ep.addModel(new insilico.carcinogenicity_rat_male.ismCarcinogenicityRatMale());
+        ep.addModel(new insilico.carcinogenicity_rat_female.ismCarcinogenicityRatFemale());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Acute Toxicity (LD50)", SECTION_HUMAN);
+        ep.addModel(new insilico.ld50.ismLD50());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Skin Sensitization", SECTION_HUMAN);
+        ep.addModel(new insilico.skin_caesar.ismSkinCaesar());
+        ep.addModel(new insilico.skin_irfmn.ismSkinIRFMN());
+        ep.addModel(new insilico.skin_cosmetics.ismSkinCosmetics());
+        ep.addModel(new insilico.skin_sensitization_toxtree.ismSkinSensitizationToxTree());
+        ep.addModel(new insilico.skin_sensitization_concert.ismSkinSensitizationConcert());
+        ep.addModel(new insilico.skin_sensitization_sarpy.ismSkinSensitizationSarpy());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Skin Irritation", SECTION_HUMAN);
+        ep.addModel(new insilico.skin_irritation.ismSkinIrritation());
+        ep.addModel(new insilico.skin_irritation_coral.ismSkinIrritationCoral());
+        ep.addModel(new insilico.skin_irritation_sarpy.ismSkinIrritationSarpy());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Eye Irritation", SECTION_HUMAN);
+        ep.addModel(new insilico.eye_irritation.ismEyeIrritation());
+        ep.addModel(new insilico.eye_irritation_knn.ismEyeIrritationKnn());
+        ep.addModel(new insilico.eye_irritation_sarpy.ismEyeIrritationSarpy());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Chromosomal aberration", SECTION_HUMAN);
+        ep.addModel(new insilico.chromosomal_coral.ismChromosomalAberrationCoral());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Micronucleus assay", SECTION_HUMAN);
+        ep.addModel(new insilico.micronculeus_vitro.ismMicronucleusInVitro());
+        ep.addModel(new insilico.micronuclueus_vivo.ismMicronucleusInVivo());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Estrogen receptor effect", SECTION_HUMAN);
+        ep.addModel(new insilico.rba_cerapp.ismEstrogenBindingCerapp());
+        ep.addModel(new insilico.rba_irfmn.ismRbaIRFMN());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Androgen receptor effect", SECTION_HUMAN);
+        ep.addModel(new insilico.rba_compara_irfmn.ismAndrogenBindingComparaIRFMN());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Thyroid receptor effect", SECTION_HUMAN);
+        ep.addModel(new insilico.thyroid_tralpha_nrmea.ismTRAlphaNRMEA());
+        ep.addModel(new insilico.thyroid_trbeta_nrmea.ismTRBetaNRMEA());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Glucocorticoid Receptor effect", SECTION_HUMAN);
+        ep.addModel(new insilico.glucocorticoid_receptor.ismGlucocorticoidReceptor());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Thyroperoxidase Inhibitory activity", SECTION_HUMAN);
+        ep.addModel(new insilico.tpo_oberon.ismTpoOberon());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Steroidogenesis activity", SECTION_HUMAN);
+        ep.addModel(new insilico.steroidogenesis.ismSteroidogenesis());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Endocrine Disruptor activity", SECTION_HUMAN);
+        ep.addModel(new insilico.endocrine_disruptors_irfmn.ismEndocrineDisruptorsIRFMN());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("NOAEL", SECTION_HUMAN);
+        ep.addModel(new insilico.noael_general_coral.ismNoaelGeneralCoral());
+        ep.addModel(new insilico.noel_coral.ismNoaelCoral());
+        ep.addModel(new insilico.noael_coral_liver.ismNoaelCoralLiver());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("LOAEL", SECTION_HUMAN);
+        ep.addModel(new insilico.loael_general_coral.ismLoaelGeneralCoral());
+        ep.addModel(new insilico.loael_coral_liver.ismLoaelCoralLiver());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Cramer classification", SECTION_HUMAN);
+        ep.addModel(new insilico.cramer_toxtree.ismCramerToxtree());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Hepatotoxicity", SECTION_HUMAN);
+        ep.addModel(new insilico.hepatoxicty_irfmn.ismHepatotoxicityIrfmn());
+        ep.addModel(new ismDiliBayer(true, null));
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Cardiotoxicity", SECTION_HUMAN);
+        ep.addModel(new ApicalCardioTox(true, null));
+        ep.addModel(new CardioToxMultitask(true, null));
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Mitochondrial dysfunction", SECTION_HUMAN);
+        ep.addModel(new MitochondrialDysfunction(true, null));
+        endpointsList.add(ep);
+
+
+        // Ecotox
+
+        ep = new VegaEndpointWithClass("BCF", SECTION_ECOTOX);
+        ep.addModel(new insilico.bcf_caesar.ismBCFCaesar());
+        ep.addModel(new insilico.bcf_meylan.ismBCFMeylan());
+        ep.addModel(new insilico.bcf_arnotgobas.ismBCFArnotGobas());
+        ep.addModel(new insilico.bcf_knn.ismBCFKnn());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Aquatic Acute Toxicity", SECTION_ECOTOX);
+        ep.addModel(new insilico.fish_lc50.ismFishLC50());
+        ep.addModel(new insilico.fish_nic.ismFishNic());
+        ep.addModel(new insilico.fish_knn.ismFishKnn());
+        ep.addModel(new insilico.fish_irfmn.ismFishIRFMN());
+        ep.addModel(new insilico.fish_combase.ismFishCombase());
+        ep.addModel(new insilico.fathead_epa.ismFatheadEPA());
+        ep.addModel(new insilico.fathead_knn.ismFatheadKnn());
+        ep.addModel(new insilico.daphnia_ec50.ismDaphniaEC50());
+        ep.addModel(new insilico.daphnia_epa.ismDaphniaEPA());
+        ep.addModel(new insilico.daphnia_demetra.ismDaphniaDemetra());
+        ep.addModel(new insilico.daphnia_combase.ismDaphniaCombase());
+        ep.addModel(new insilico.guppy_knn.ismGuppyKnn());
+        ep.addModel(new insilico.algae_ec50.ismAlgaeEC50());
+        ep.addModel(new insilico.algae_combaseclass.ismAlgaeCombaseClass());
+        ep.addModel(new insilico.algae_combaseEC50.ismAlgaeCombaseEC50());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Aquatic Chronic Toxicity", SECTION_ECOTOX);
+        ep.addModel(new insilico.fish_noec.ismFishNOEC());
+        ep.addModel(new insilico.daphnia_noec.ismDaphniaNOEC());
+        ep.addModel(new insilico.algae_noec.ismAlgaeNOEC());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Mode of Action", SECTION_ECOTOX);
+        ep.addModel(new insilico.verhaar_toxtree.ismVerhaarToxtree());
+        ep.addModel(new insilico.moa_epa.ismMoaEpa());
+        ep.addModel(new insilico.moa_irfmn.ismMoaIrfmn());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Terrestrial Acute Toxicity", SECTION_ECOTOX);
+        ep.addModel(new insilico.bee_knn.ismBeeKnn());
+        ep.addModel(new insilico.earthworm_toxicity.ismEarthworkToxicity());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Sludge Toxicity", SECTION_ECOTOX);
+        ep.addModel(new insilico.sludge_combaseclass.ismSludgeCombaseClass());
+        ep.addModel(new insilico.sludge_combaseEC50.ismSludgeCombaseEC50());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Zebrafish embryo activity", SECTION_ECOTOX);
+        ep.addModel(new insilico.zebrafish_coral.ismZebrafishCoral());
+        endpointsList.add(ep);
+
+
+        // Fate and Distribution
+
+        ep = new VegaEndpointWithClass("Ready biodegradability", SECTION_FATE);
+        ep.addModel(new insilico.readybio_irfmn.ismReadyBioIRFMN());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Persistence (sediment)", SECTION_FATE);
+        ep.addModel(new insilico.persistence_sediment_irfmn.ismPersistenceSedimentIrfmn());
+        ep.addModel(new insilico.persistence_sediment_quantitative_irfmn.ismPersistenceSedimentQuantitativeIrfmn());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Persistence (soil)", SECTION_FATE);
+        ep.addModel(new insilico.persistence_soil_irfmn.ismPersistenceSoilIrfmn());
+        ep.addModel(new insilico.persistence_soil_quantitative_irfmn.ismPersistenceSoilQuantitativeIrfmn());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Persistence (water)", SECTION_FATE);
+        ep.addModel(new insilico.persistence_water_irfmn.ismPersistenceWaterIrfmn());
+        ep.addModel(new insilico.persistence_quantative_water_irfmn.ismPersistenceWaterQuantitativeIrfmn());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Persistence (air)", SECTION_FATE);
+        ep.addModel(new insilico.persistence_air_coral.ismPersistenceAirCoral());
+        endpointsList.add(ep);
+
+
+        // Physical Chemical properties
+
+        ep = new VegaEndpointWithClass("Octanol/Water partition coefficient (logP)", SECTION_PHYS);
+        ep.addModel(new insilico.meylanlogp.ismLogPMeylan());
+        ep.addModel(new insilico.logp_mlogp.ismLogPMLogP());
+        ep.addModel(new insilico.logp_alogp.ismLogPALogP());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Water solubility", SECTION_PHYS);
+        ep.addModel(new insilico.watersolubility.ismWaterSolubilityIRFMN());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Vapour pressure", SECTION_PHYS);
+        ep.addModel(new insilico.vapour_pressure.ismVapourPressure());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Melting point", SECTION_PHYS);
+        ep.addModel(new insilico.melting_point.ismMeltingPoint());
+        ep.addModel(new insilico.melting_point_knn.ismMeltingPointKnn());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Hydrolysis", SECTION_PHYS);
+        ep.addModel(new insilico.hydrolysis_coral.ismHydrolysisCoral());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Henry's law constant", SECTION_PHYS);
+        ep.addModel(new insilico.henryslaw.ismHenrysLawOpera());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Octanol/air partition coefficient (KOA)", SECTION_PHYS);
+        ep.addModel(new insilico.koa_opera.ismKoaOpera());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Soil adsorption coefficient of organic compounds (KOC)", SECTION_PHYS);
+        ep.addModel(new insilico.koc_opera.ismKocOpera());
+        endpointsList.add(ep);
+
+
+        // Human PBPK
+
+        ep = new VegaEndpointWithClass("Plasma Protein Binding", SECTION_HUMAN_PBPK);
+        ep.addModel(new insilico.logk.ismLogK());
+        ep.addModel(new insilico.ppb_coral.ismPPBCoral());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Aromatase activity", SECTION_HUMAN_PBPK);
+        ep.addModel(new insilico.aromatase_irfmn.ismAromataseIRFMN());
+        ep.addModel(new insilico.aromatase_activity.ismAromataseTox21());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("P-Glycoprotein activity", SECTION_HUMAN_PBPK);
+        ep.addModel(new insilico.pgp_nic.ismPgpNic());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Hepatic Steatosis MIE", SECTION_HUMAN_PBPK);
+        ep.addModel(new insilico.pxr_up.ismPxrUp());
+        ep.addModel(new insilico.pparg_up.ismPPARGup());
+        ep.addModel(new insilico.ppara_up.ismPPARAUp());
+        ep.addModel(new insilico.nrf2_up.ismNRF2Up());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Skin permeation (LogKp)", SECTION_HUMAN_PBPK);
+        ep.addModel(new insilico.skin_permeation_potts.ismSkinPermeationPotts());
+        ep.addModel(new insilico.skin_permeation_tenberge.ismSkinPermeationTenBerge());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Adipose tissue-blood partition", SECTION_HUMAN_PBPK);
+        ep.addModel(new insilico.tissueblood_ineris.ismTissueBloodIneris());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Body elimination half-life", SECTION_HUMAN_PBPK);
+        ep.addModel(new insilico.totalhl_qsarins.ismTotalHLQsarins());
+        endpointsList.add(ep);
+
+
+        // Eco PBPK
+
+        ep = new VegaEndpointWithClass("kM/Half Life", SECTION_ECO_PBPK);
+        ep.addModel(new insilico.km_arnot.ismKmArnot());
+        endpointsList.add(ep);
+
+        return endpointsList;
     }
 
 
@@ -1246,4 +1549,5 @@ public class ModelDispatcher {
 
         return selectedModel;
     }
+    
 }

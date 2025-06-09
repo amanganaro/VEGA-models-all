@@ -735,6 +735,8 @@
             <version>1.0.1</version>
         </dependency>
 
+        <!-- PYTHON MODELS -->
+
         <dependency>
             <groupId>InSilico</groupId>
             <artifactId>VegaModels-DiliBayer</artifactId>
@@ -759,6 +761,11 @@
             <version>1.0.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>InSilico</groupId>
+            <artifactId>VegaModels-PMML</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
 </project>

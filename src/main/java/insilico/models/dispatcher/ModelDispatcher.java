@@ -10,6 +10,7 @@ import insilico.core.model.runner.iInsilicoModelRunnerMessenger;
 import insilico.dilibayer.ismDiliBayer;
 import insilico.mitochondrial_dysfunction.MitochondrialDysfunction;
 import insilico.models.exception.ModelNotFoundException;
+import insilico.pmml_ontox.ismPmmlOntox;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -156,6 +157,8 @@ public class ModelDispatcher {
     public final static String MITOCHONDRIAL_DYSFUNCTION = "MITO_DYSF";
     public final static String APICAL_CARDIO_TOX = "API_CARDIO";
     public final static String CARDIO_TOX_MULTITASK = "CARDIO_MULTITASK";
+    public final static String ACE_ONTOX = "ACE_ONTOX";
+    public final static String TEST_ONTOX = "TEST_ONTOX";
 
 
     // supporting class to organize endpoints
@@ -1158,6 +1161,12 @@ public class ModelDispatcher {
             case CARDIO_TOX_MULTITASK:
                 selectedModel = new CardioToxMultitask(false, null);
                 break;
+            case ACE_ONTOX:
+                selectedModel = new ismPmmlOntox(false, null, ACE_ONTOX);
+                break;
+            case TEST_ONTOX:
+                selectedModel = new ismPmmlOntox(false, null, TEST_ONTOX);
+                break;
 
             default:
                 throw new ModelNotFoundException("No model found for tag: " + Tag);
@@ -1517,6 +1526,12 @@ public class ModelDispatcher {
                 break;
             case CARDIO_TOX_MULTITASK:
                 selectedModel = new CardioToxMultitask(bypassCondaCheck, messenger);
+                break;
+            case ACE_ONTOX:
+                selectedModel = new ismPmmlOntox(bypassCondaCheck, messenger, ACE_ONTOX);
+                break;
+            case TEST_ONTOX:
+                selectedModel = new ismPmmlOntox(bypassCondaCheck, messenger, TEST_ONTOX);
                 break;
 
             default:

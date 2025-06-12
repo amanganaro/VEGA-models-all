@@ -10,6 +10,7 @@ import insilico.core.model.runner.iInsilicoModelRunnerMessenger;
 import insilico.dilibayer.ismDiliBayer;
 import insilico.mitochondrial_dysfunction.MitochondrialDysfunction;
 import insilico.models.exception.ModelNotFoundException;
+import insilico.ontox_assay.ismOntoxAssay;
 import insilico.pmml_ontox.ismPmmlOntox;
 
 import java.io.IOException;
@@ -158,7 +159,8 @@ public class ModelDispatcher {
     public final static String APICAL_CARDIO_TOX = "API_CARDIO";
     public final static String CARDIO_TOX_MULTITASK = "CARDIO_MULTITASK";
     public final static String ACE_ONTOX = "ACE_ONTOX";
-    public final static String TEST_ONTOX = "TEST_ONTOX";
+    public final static String NMDA_ONTOX = "NMDA_ONTOX";
+    public final static String PXR_ONTOX = "PXR_ONTOX";
 
 
     // supporting class to organize endpoints
@@ -346,6 +348,11 @@ public class ModelDispatcher {
         ep.AddModel(MITOCHONDRIAL_DYSFUNCTION);
         Endpoints.add(ep);
 
+        ep = new VegaEndpoint("Ontox Assay", SECTION_HUMAN);
+        ep.AddModel(ACE_ONTOX);
+        ep.AddModel(PXR_ONTOX);
+        ep.AddModel(NMDA_ONTOX);
+        Endpoints.add(ep);
 
         // Ecotox
 
@@ -633,6 +640,12 @@ public class ModelDispatcher {
 
         ep = new VegaEndpointWithClass("Mitochondrial dysfunction", SECTION_HUMAN);
         ep.addModel(new MitochondrialDysfunction(true, null));
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Ontox Assay", SECTION_HUMAN);
+        ep.addModel(new ismOntoxAssay(true, null, ACE_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, PXR_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, NMDA_ONTOX));
         endpointsList.add(ep);
 
 
@@ -1162,10 +1175,13 @@ public class ModelDispatcher {
                 selectedModel = new CardioToxMultitask(false, null);
                 break;
             case ACE_ONTOX:
-                selectedModel = new ismPmmlOntox(false, null, ACE_ONTOX);
+                selectedModel = new ismOntoxAssay(false, null, ACE_ONTOX);
                 break;
-            case TEST_ONTOX:
-                selectedModel = new ismPmmlOntox(false, null, TEST_ONTOX);
+            case NMDA_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, NMDA_ONTOX);
+                break;
+            case PXR_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, PXR_ONTOX);
                 break;
 
             default:
@@ -1528,10 +1544,13 @@ public class ModelDispatcher {
                 selectedModel = new CardioToxMultitask(bypassCondaCheck, messenger);
                 break;
             case ACE_ONTOX:
-                selectedModel = new ismPmmlOntox(bypassCondaCheck, messenger, ACE_ONTOX);
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, ACE_ONTOX);
                 break;
-            case TEST_ONTOX:
-                selectedModel = new ismPmmlOntox(bypassCondaCheck, messenger, TEST_ONTOX);
+            case NMDA_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, NMDA_ONTOX);
+                break;
+            case PXR_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, PXR_ONTOX);
                 break;
 
             default:

@@ -11,10 +11,6 @@ import insilico.dilibayer.ismDiliBayer;
 import insilico.mitochondrial_dysfunction.MitochondrialDysfunction;
 import insilico.models.exception.ModelNotFoundException;
 import insilico.ontox_assay.ismOntoxAssay;
-import insilico.pmml_ontox.ismPmmlOntox;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 

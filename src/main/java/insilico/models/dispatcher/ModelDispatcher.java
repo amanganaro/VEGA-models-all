@@ -344,12 +344,6 @@ public class ModelDispatcher {
         ep.AddModel(MITOCHONDRIAL_DYSFUNCTION);
         Endpoints.add(ep);
 
-        ep = new VegaEndpoint("Ontox Assay", SECTION_HUMAN);
-        ep.AddModel(ACE_ONTOX);
-        ep.AddModel(PXR_ONTOX);
-        ep.AddModel(NMDA_ONTOX);
-        Endpoints.add(ep);
-
         // Ecotox
 
         ep = new VegaEndpoint("BCF", SECTION_ECOTOX);
@@ -504,6 +498,12 @@ public class ModelDispatcher {
         ep.AddModel(TOTALHL_QSARINS);
         Endpoints.add(ep);
 
+        ep = new VegaEndpoint("Ontox Assay", SECTION_HUMAN_PBPK);
+        ep.AddModel(ACE_ONTOX);
+        ep.AddModel(PXR_ONTOX);
+        ep.AddModel(NMDA_ONTOX);
+        Endpoints.add(ep);
+
 
         // Eco PBPK
 
@@ -636,12 +636,6 @@ public class ModelDispatcher {
 
         ep = new VegaEndpointWithClass("Mitochondrial dysfunction", SECTION_HUMAN);
         ep.addModel(new MitochondrialDysfunction(true, null));
-        endpointsList.add(ep);
-
-        ep = new VegaEndpointWithClass("Ontox Assay", SECTION_HUMAN);
-        ep.addModel(new ismOntoxAssay(true, null, ACE_ONTOX));
-        ep.addModel(new ismOntoxAssay(true, null, PXR_ONTOX));
-        ep.addModel(new ismOntoxAssay(true, null, NMDA_ONTOX));
         endpointsList.add(ep);
 
 
@@ -797,6 +791,12 @@ public class ModelDispatcher {
 
         ep = new VegaEndpointWithClass("Body elimination half-life", SECTION_HUMAN_PBPK);
         ep.addModel(new insilico.totalhl_qsarins.ismTotalHLQsarins());
+        endpointsList.add(ep);
+
+        ep = new VegaEndpointWithClass("Ontox Assay", SECTION_HUMAN_PBPK);
+        ep.addModel(new ismOntoxAssay(true, null, ACE_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, PXR_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, NMDA_ONTOX));
         endpointsList.add(ep);
 
 

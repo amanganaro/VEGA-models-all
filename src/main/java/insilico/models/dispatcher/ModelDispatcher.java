@@ -498,9 +498,17 @@ public class ModelDispatcher {
         ep.AddModel(TOTALHL_QSARINS);
         Endpoints.add(ep);
 
-        ep = new VegaEndpoint("Ontox Assay", SECTION_HUMAN_PBPK);
+        ep = new VegaEndpoint("Kidney failure (KF)", SECTION_HUMAN_PBPK);
         ep.AddModel(ACE_ONTOX);
+        Endpoints.add(ep);
+
+
+        ep = new VegaEndpoint("Liver steatosis (STE)", SECTION_HUMAN_PBPK);
         ep.AddModel(PXR_ONTOX);
+        Endpoints.add(ep);
+
+
+        ep = new VegaEndpoint("Cognitive function defects (CFD)", SECTION_HUMAN_PBPK);
         ep.AddModel(NMDA_ONTOX);
         Endpoints.add(ep);
 
@@ -793,9 +801,17 @@ public class ModelDispatcher {
         ep.addModel(new insilico.totalhl_qsarins.ismTotalHLQsarins());
         endpointsList.add(ep);
 
-        ep = new VegaEndpointWithClass("Ontox Assay", SECTION_HUMAN_PBPK);
+        ep = new VegaEndpointWithClass("Kidney failure (KF)", SECTION_HUMAN_PBPK);
         ep.addModel(new ismOntoxAssay(true, null, ACE_ONTOX));
+        endpointsList.add(ep);
+
+
+        ep = new VegaEndpointWithClass("Liver steatosis (STE)", SECTION_HUMAN_PBPK);
         ep.addModel(new ismOntoxAssay(true, null, PXR_ONTOX));
+        endpointsList.add(ep);
+
+
+        ep = new VegaEndpointWithClass("Cognitive function defects (CFD)", SECTION_HUMAN_PBPK);
         ep.addModel(new ismOntoxAssay(true, null, NMDA_ONTOX));
         endpointsList.add(ep);
 

@@ -157,6 +157,28 @@ public class ModelDispatcher {
     public final static String ACE_ONTOX = "ACE_ONTOX";
     public final static String NMDA_ONTOX = "NMDA_ONTOX";
     public final static String PXR_ONTOX = "PXR_ONTOX";
+    public final static String OAT1_ONTOX = "OAT1_ONTOX";
+    public final static String COX1_ONTOX = "COX1_ONTOX";
+    public final static String AT1R_ONTOX = "AT1R_ONTOX";
+    public final static String TTR_ONTOX = "TTR_ONTOX";
+    public final static String BSEP_ONTOX = "BSEP_ONTOX";
+    public final static String ACHE_ONTOX = "ACHE_ONTOX";
+    public final static String FGFR1_ONTOX = "FGFR1_ONTOX";
+    public final static String FGFR2_ONTOX = "FGFR2_ONTOX";
+    public final static String FGFR3_ONTOX = "FGFR3_ONTOX";
+    public final static String FGFR4_ONTOX = "FGFR4_ONTOX";
+    public final static String BMP_ONTOX = "BMP_ONTOX";
+    public final static String AHR_ONTOX = "AHR_ONTOX";
+    public final static String WNT_ONTOX = "WNT_ONTOX";
+    public final static String PPARA_ONTOX = "PPARA_ONTOX";
+    public final static String PPARD_ONTOX = "PPARD_ONTOX";
+    public final static String PPARG_ONTOX = "PPARG_ONTOX";
+    public final static String HDEAC_ONTOX = "HDEAC_ONTOX";
+    public final static String THRB_ONTOX = "THRB_ONTOX";
+    public final static String CYP26_ONTOX = "CYP26_ONTOX";
+    public final static String THRA_ONTOX = "THRA_ONTOX";
+    public final static String VGSC_ONTOX = "VGSC_ONTOX";
+    public final static String GR_ONTOX = "GR_ONTOX";
 
 
     // supporting class to organize endpoints
@@ -346,16 +368,41 @@ public class ModelDispatcher {
 
         ep = new VegaEndpoint("Kidney failure (KF)", SECTION_HUMAN);
         ep.AddModel(ACE_ONTOX);
+        ep.AddModel(OAT1_ONTOX);
+        ep.AddModel(COX1_ONTOX);
+        ep.AddModel(AT1R_ONTOX);
         Endpoints.add(ep);
 
+        ep = new VegaEndpoint("Cholestasis  (CHO)", SECTION_HUMAN);
+        ep.AddModel(BSEP_ONTOX);
+        Endpoints.add(ep);
+
+        ep = new VegaEndpoint("Neural tube closure (NTD)", SECTION_HUMAN);
+        ep.AddModel(HDEAC_ONTOX);
+        ep.AddModel(CYP26_ONTOX);
+        ep.AddModel(BMP_ONTOX);
+        ep.AddModel(WNT_ONTOX);
+        ep.AddModel(FGFR1_ONTOX);
+        ep.AddModel(FGFR2_ONTOX);
+        ep.AddModel(FGFR3_ONTOX);
+        ep.AddModel(FGFR4_ONTOX);
+        Endpoints.add(ep);
+
+        ep = new VegaEndpoint("Cognitive function defects (CFD)", SECTION_HUMAN);
+        ep.AddModel(TTR_ONTOX);
+        //ep.AddModel(ACHE_ONTOX);
+        ep.AddModel(THRB_ONTOX);
+        ep.AddModel(THRA_ONTOX);
+        ep.AddModel(VGSC_ONTOX);
+        ep.AddModel(NMDA_ONTOX);
+        Endpoints.add(ep);
 
         ep = new VegaEndpoint("Liver steatosis (STE)", SECTION_HUMAN);
         ep.AddModel(PXR_ONTOX);
-        Endpoints.add(ep);
-
-
-        ep = new VegaEndpoint("Cognitive function defects (CFD)", SECTION_HUMAN);
-        ep.AddModel(NMDA_ONTOX);
+        ep.AddModel(AHR_ONTOX);
+        ep.AddModel(PPARA_ONTOX);
+        ep.AddModel(PPARD_ONTOX);
+        ep.AddModel(PPARG_ONTOX);
         Endpoints.add(ep);
 
         // Ecotox
@@ -648,18 +695,42 @@ public class ModelDispatcher {
 
         ep = new VegaEndpointWithClass("Kidney failure (KF)", SECTION_HUMAN);
         ep.addModel(new ismOntoxAssay(true, null, ACE_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, OAT1_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, COX1_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, AT1R_ONTOX));
         endpointsList.add(ep);
 
-
-        ep = new VegaEndpointWithClass("Liver steatosis (STE)", SECTION_HUMAN);
-        ep.addModel(new ismOntoxAssay(true, null, PXR_ONTOX));
+        ep = new VegaEndpointWithClass("Cholestasis  (CHO)", SECTION_HUMAN);
+        ep.addModel(new ismOntoxAssay(true, null, BSEP_ONTOX));
         endpointsList.add(ep);
 
+        ep = new VegaEndpointWithClass("Neural tube closure (NTD)", SECTION_HUMAN);
+        ep.addModel(new ismOntoxAssay(true, null, HDEAC_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, CYP26_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, BMP_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, WNT_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, FGFR1_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, FGFR2_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, FGFR3_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, FGFR4_ONTOX));
+        endpointsList.add(ep);
 
         ep = new VegaEndpointWithClass("Cognitive function defects (CFD)", SECTION_HUMAN);
+        ep.addModel(new ismOntoxAssay(true, null, TTR_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, ACHE_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, THRB_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, THRA_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, VGSC_ONTOX));
         ep.addModel(new ismOntoxAssay(true, null, NMDA_ONTOX));
         endpointsList.add(ep);
 
+        ep = new VegaEndpointWithClass("Liver steatosis (STE)", SECTION_HUMAN);
+        ep.addModel(new ismOntoxAssay(true, null, PXR_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, AHR_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, PPARA_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, PPARD_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, PPARG_ONTOX));
+        endpointsList.add(ep);
 
         // Ecotox
 
@@ -1195,6 +1266,72 @@ public class ModelDispatcher {
             case PXR_ONTOX:
                 selectedModel = new ismOntoxAssay(false, null, PXR_ONTOX);
                 break;
+            case ACHE_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, ACHE_ONTOX);
+                break;
+            case AHR_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, AHR_ONTOX);
+                break;
+            case AT1R_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, AT1R_ONTOX);
+                break;
+            case BMP_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, BMP_ONTOX);
+                break;
+            case BSEP_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, BSEP_ONTOX);
+                break;
+            case COX1_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, COX1_ONTOX);
+                break;
+            case CYP26_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, CYP26_ONTOX);
+                break;
+            case FGFR1_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, FGFR1_ONTOX);
+                break;
+            case FGFR2_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, FGFR2_ONTOX);
+                break;
+            case FGFR3_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, FGFR3_ONTOX);
+                break;
+            case FGFR4_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, FGFR4_ONTOX);
+                break;
+            case GR_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, GR_ONTOX);
+                break;
+            case HDEAC_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, HDEAC_ONTOX);
+                break;
+            case OAT1_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, OAT1_ONTOX);
+                break;
+            case PPARA_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, PPARA_ONTOX);
+                break;
+            case PPARD_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, PPARD_ONTOX);
+                break;
+            case PPARG_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, PPARG_ONTOX);
+                break;
+            case THRA_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, THRA_ONTOX);
+                break;
+            case THRB_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, THRB_ONTOX);
+                break;
+            case TTR_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, TTR_ONTOX);
+                break;
+            case VGSC_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, VGSC_ONTOX);
+                break;
+            case WNT_ONTOX:
+                selectedModel = new ismOntoxAssay(false, null, WNT_ONTOX);
+                break;
 
             default:
                 throw new ModelNotFoundException("No model found for tag: " + Tag);
@@ -1563,6 +1700,72 @@ public class ModelDispatcher {
                 break;
             case PXR_ONTOX:
                 selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, PXR_ONTOX);
+                break;
+            case ACHE_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, ACHE_ONTOX);
+                break;
+            case AHR_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, AHR_ONTOX);
+                break;
+            case AT1R_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, AT1R_ONTOX);
+                break;
+            case BMP_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, BMP_ONTOX);
+                break;
+            case BSEP_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, BSEP_ONTOX);
+                break;
+            case COX1_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, COX1_ONTOX);
+                break;
+            case CYP26_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, CYP26_ONTOX);
+                break;
+            case FGFR1_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, FGFR1_ONTOX);
+                break;
+            case FGFR2_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, FGFR2_ONTOX);
+                break;
+            case FGFR3_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, FGFR3_ONTOX);
+                break;
+            case FGFR4_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, FGFR4_ONTOX);
+                break;
+            case GR_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, GR_ONTOX);
+                break;
+            case HDEAC_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, HDEAC_ONTOX);
+                break;
+            case OAT1_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, OAT1_ONTOX);
+                break;
+            case PPARA_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, PPARA_ONTOX);
+                break;
+            case PPARD_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, PPARD_ONTOX);
+                break;
+            case PPARG_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, PPARG_ONTOX);
+                break;
+            case THRA_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, THRA_ONTOX);
+                break;
+            case THRB_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, THRB_ONTOX);
+                break;
+            case TTR_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, TTR_ONTOX);
+                break;
+            case VGSC_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, VGSC_ONTOX);
+                break;
+            case WNT_ONTOX:
+                selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, WNT_ONTOX);
                 break;
 
             default:

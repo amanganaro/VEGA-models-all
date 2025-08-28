@@ -390,18 +390,19 @@ public class ModelDispatcher {
 
         ep = new VegaEndpoint("Cognitive function defects (CFD)", SECTION_HUMAN);
         ep.AddModel(TTR_ONTOX);
-        //ep.AddModel(ACHE_ONTOX);
+        ep.AddModel(ACHE_ONTOX);
         ep.AddModel(THRB_ONTOX);
         ep.AddModel(THRA_ONTOX);
         ep.AddModel(VGSC_ONTOX);
         ep.AddModel(NMDA_ONTOX);
+        ep.AddModel(PPARD_ONTOX);
+        ep.AddModel(GR_ONTOX);
         Endpoints.add(ep);
 
         ep = new VegaEndpoint("Liver steatosis (STE)", SECTION_HUMAN);
         ep.AddModel(PXR_ONTOX);
         ep.AddModel(AHR_ONTOX);
         ep.AddModel(PPARA_ONTOX);
-        ep.AddModel(PPARD_ONTOX);
         ep.AddModel(PPARG_ONTOX);
         Endpoints.add(ep);
 
@@ -722,13 +723,14 @@ public class ModelDispatcher {
         ep.addModel(new ismOntoxAssay(true, null, THRA_ONTOX));
         ep.addModel(new ismOntoxAssay(true, null, VGSC_ONTOX));
         ep.addModel(new ismOntoxAssay(true, null, NMDA_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, PPARD_ONTOX));
+        ep.addModel(new ismOntoxAssay(true, null, GR_ONTOX));
         endpointsList.add(ep);
 
         ep = new VegaEndpointWithClass("Liver steatosis (STE)", SECTION_HUMAN);
         ep.addModel(new ismOntoxAssay(true, null, PXR_ONTOX));
         ep.addModel(new ismOntoxAssay(true, null, AHR_ONTOX));
         ep.addModel(new ismOntoxAssay(true, null, PPARA_ONTOX));
-        ep.addModel(new ismOntoxAssay(true, null, PPARD_ONTOX));
         ep.addModel(new ismOntoxAssay(true, null, PPARG_ONTOX));
         endpointsList.add(ep);
 

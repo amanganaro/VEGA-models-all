@@ -766,6 +766,25 @@
             <artifactId>VegaModels-ONTOX-assay</artifactId>
             <version>1.0.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>InSilico</groupId>
+            <artifactId>VegaModels-Dio1</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+                <groupId>InSilico</groupId>
+                <artifactId>VegaModels-SteroidogenesisEDScreen</artifactId>
+                <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>InSilico</groupId>
+            <artifactId>VegaModels-TTR</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>

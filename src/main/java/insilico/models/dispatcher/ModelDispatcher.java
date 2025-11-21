@@ -8,9 +8,13 @@ import insilico.core.model.InsilicoModel;
 import insilico.core.model.InsilicoModelConsensus;
 import insilico.core.model.runner.iInsilicoModelRunnerMessenger;
 import insilico.dilibayer.ismDiliBayer;
+import insilico.dio1.ismDio1;
 import insilico.mitochondrial_dysfunction.MitochondrialDysfunction;
 import insilico.models.exception.ModelNotFoundException;
 import insilico.ontox_assay.ismOntoxAssay;
+import insilico.steroidogenesisedscreen.ismSteroidogenesisEDScreen;
+import insilico.ttr.ismTTR;
+
 import java.util.ArrayList;
 
 
@@ -179,6 +183,10 @@ public class ModelDispatcher {
     public final static String THRA_ONTOX = "THRA_ONTOX";
     public final static String VGSC_ONTOX = "VGSC_ONTOX";
     public final static String GR_ONTOX = "GR_ONTOX";
+    public final static String DIO1_EDSCREEN = "DIO1_EDSCREEN";
+    public final static String STERO_EDSCREEN = "STERO_EDSCREEN";
+    public final static String TTR_EDSCREEN = "TTR_EDSCREEN";
+
 
 
     // supporting class to organize endpoints
@@ -319,6 +327,8 @@ public class ModelDispatcher {
         ep = new VegaEndpoint("Thyroid receptor effect", SECTION_HUMAN);
         ep.AddModel(TRALPHA_NRMEA);
         ep.AddModel(TRBETA_NRMEA);
+        ep.AddModel(TTR_EDSCREEN);
+        ep.AddModel(DIO1_EDSCREEN);
         Endpoints.add(ep);
 
         ep = new VegaEndpoint("Glucocorticoid Receptor effect", SECTION_HUMAN);
@@ -331,6 +341,7 @@ public class ModelDispatcher {
 
         ep = new VegaEndpoint("Steroidogenesis activity", SECTION_HUMAN);
         ep.AddModel(STEROIDOGENESIS_OBERON);
+        ep.AddModel(STERO_EDSCREEN);
         Endpoints.add(ep);
 
         ep = new VegaEndpoint("Endocrine Disruptor activity", SECTION_HUMAN);
@@ -647,6 +658,8 @@ public class ModelDispatcher {
         ep = new VegaEndpointWithClass("Thyroid receptor effect", SECTION_HUMAN);
         ep.addModel(new insilico.thyroid_tralpha_nrmea.ismTRAlphaNRMEA());
         ep.addModel(new insilico.thyroid_trbeta_nrmea.ismTRBetaNRMEA());
+        ep.addModel(new insilico.ttr.ismTTR());
+        ep.addModel(new insilico.dio1.ismDio1());
         endpointsList.add(ep);
 
         ep = new VegaEndpointWithClass("Glucocorticoid Receptor effect", SECTION_HUMAN);
@@ -659,6 +672,7 @@ public class ModelDispatcher {
 
         ep = new VegaEndpointWithClass("Steroidogenesis activity", SECTION_HUMAN);
         ep.addModel(new insilico.steroidogenesis.ismSteroidogenesis());
+        ep.addModel(new insilico.steroidogenesisedscreen.ismSteroidogenesisEDScreen());
         endpointsList.add(ep);
 
         ep = new VegaEndpointWithClass("Endocrine Disruptor activity", SECTION_HUMAN);
@@ -1334,6 +1348,15 @@ public class ModelDispatcher {
             case WNT_ONTOX:
                 selectedModel = new ismOntoxAssay(false, null, WNT_ONTOX);
                 break;
+            case DIO1_EDSCREEN:
+                selectedModel = new ismDio1();
+                break;
+            case STERO_EDSCREEN:
+                selectedModel = new ismSteroidogenesisEDScreen();
+                break;
+            case TTR_EDSCREEN:
+                selectedModel = new ismTTR();
+                break;
 
             default:
                 throw new ModelNotFoundException("No model found for tag: " + Tag);
@@ -1769,6 +1792,16 @@ public class ModelDispatcher {
             case WNT_ONTOX:
                 selectedModel = new ismOntoxAssay(bypassCondaCheck, messenger, WNT_ONTOX);
                 break;
+            case DIO1_EDSCREEN:
+                selectedModel = new ismDio1();
+                break;
+            case STERO_EDSCREEN:
+                selectedModel = new ismSteroidogenesisEDScreen();
+                break;
+            case TTR_EDSCREEN:
+                selectedModel = new ismTTR();
+                break;
+
 
             default:
                 throw new ModelNotFoundException("No model found for tag: " + Tag);

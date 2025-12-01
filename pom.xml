@@ -49,13 +49,6 @@
 
         <dependency>
             <groupId>InSilico</groupId>
-            <artifactId>VegaModels-SteroidogenesisOberon</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>InSilico</groupId>
             <artifactId>VegaModels-MutagenicityConsensus</artifactId>
             <version>1.0.4</version>
         </dependency>

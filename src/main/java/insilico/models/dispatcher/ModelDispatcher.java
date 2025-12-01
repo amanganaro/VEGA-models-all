@@ -82,7 +82,6 @@ public class ModelDispatcher {
     public final static String TRBETA_NRMEA = "TRBETA_NRMEA";
     public final static String GLUCO_RECEPTOR = "GLUCO_RECEPTOR";
     public final static String TPO_OBERON = "TPO_OBERON";
-    public final static String STEROIDOGENESIS_OBERON = "STERO_OBERON";
     public final static String ED_SCREEN = "ED_SCREEN";
     public final static String NOAEL_CONCERT_CORAL = "NOAEL_CONCERT_CORAL";
     public final static String NOAEL_CORAL = "NOAEL_CORAL";
@@ -340,7 +339,6 @@ public class ModelDispatcher {
         Endpoints.add(ep);
 
         ep = new VegaEndpoint("Steroidogenesis activity", SECTION_HUMAN);
-        ep.AddModel(STEROIDOGENESIS_OBERON);
         ep.AddModel(STERO_EDSCREEN);
         Endpoints.add(ep);
 
@@ -671,7 +669,6 @@ public class ModelDispatcher {
         endpointsList.add(ep);
 
         ep = new VegaEndpointWithClass("Steroidogenesis activity", SECTION_HUMAN);
-        ep.addModel(new insilico.steroidogenesis.ismSteroidogenesis());
         ep.addModel(new insilico.steroidogenesisedscreen.ismSteroidogenesisEDScreen());
         endpointsList.add(ep);
 
@@ -1044,9 +1041,6 @@ public class ModelDispatcher {
                 break;
             case TPO_OBERON:
                 selectedModel = new insilico.tpo_oberon.ismTpoOberon();
-                break;
-            case STEROIDOGENESIS_OBERON:
-                selectedModel = new insilico.steroidogenesis.ismSteroidogenesis();
                 break;
             case ED_SCREEN:
                 selectedModel = new insilico.endocrine_disruptors_irfmn.ismEndocrineDisruptorsIRFMN();
@@ -1488,9 +1482,6 @@ public class ModelDispatcher {
                 break;
             case TPO_OBERON:
                 selectedModel = new insilico.tpo_oberon.ismTpoOberon();
-                break;
-            case STEROIDOGENESIS_OBERON:
-                selectedModel = new insilico.steroidogenesis.ismSteroidogenesis();
                 break;
             case ED_SCREEN:
                 selectedModel = new insilico.endocrine_disruptors_irfmn.ismEndocrineDisruptorsIRFMN();

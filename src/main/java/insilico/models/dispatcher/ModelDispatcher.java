@@ -918,7 +918,7 @@ public class ModelDispatcher {
      * @throws Exception
      * @throws InitFailureException
      */
-    public static InsilicoModel GetModelFromTag(String Tag) throws ModelNotFoundException, InitFailureException, GenericFailureException {
+    public static InsilicoModel GetModelFromTag(String Tag) throws ModelNotFoundException, InitFailureException {
 
         InsilicoModel selectedModel = null;
         switch (Tag) {
@@ -1256,91 +1256,91 @@ public class ModelDispatcher {
                 selectedModel = new insilico.km_arnot.ismKmArnot();
                 break;
             case DILI_BAYER:
-                selectedModel = new ismDiliBayer(false, null);
+                selectedModel = new ismDiliBayer();
                 break;
             case APICAL_CARDIO_TOX:
-                selectedModel = new ApicalCardioTox(false, null);
+                selectedModel = new ApicalCardioTox();
                 break;
             case MITOCHONDRIAL_DYSFUNCTION:
-                selectedModel = new MitochondrialDysfunction(false, null);
+                selectedModel = new MitochondrialDysfunction();
                 break;
             case CARDIO_TOX_MULTITASK:
-                selectedModel = new CardioToxMultitask(false, null);
+                selectedModel = new CardioToxMultitask();
                 break;
             case ACE_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, ACE_ONTOX);
+                selectedModel = new ismOntoxAssay(ACE_ONTOX);
                 break;
             case NMDA_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, NMDA_ONTOX);
+                selectedModel = new ismOntoxAssay(NMDA_ONTOX);
                 break;
             case PXR_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, PXR_ONTOX);
+                selectedModel = new ismOntoxAssay(PXR_ONTOX);
                 break;
             case ACHE_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, ACHE_ONTOX);
+                selectedModel = new ismOntoxAssay(ACHE_ONTOX);
                 break;
             case AHR_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, AHR_ONTOX);
+                selectedModel = new ismOntoxAssay(AHR_ONTOX);
                 break;
             case AT1R_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, AT1R_ONTOX);
+                selectedModel = new ismOntoxAssay(AT1R_ONTOX);
                 break;
             case BMP_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, BMP_ONTOX);
+                selectedModel = new ismOntoxAssay(BMP_ONTOX);
                 break;
             case BSEP_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, BSEP_ONTOX);
+                selectedModel = new ismOntoxAssay(BSEP_ONTOX);
                 break;
             case COX1_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, COX1_ONTOX);
+                selectedModel = new ismOntoxAssay(COX1_ONTOX);
                 break;
             case CYP26_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, CYP26_ONTOX);
+                selectedModel = new ismOntoxAssay(CYP26_ONTOX);
                 break;
             case FGFR1_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, FGFR1_ONTOX);
+                selectedModel = new ismOntoxAssay(FGFR1_ONTOX);
                 break;
             case FGFR2_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, FGFR2_ONTOX);
+                selectedModel = new ismOntoxAssay(FGFR2_ONTOX);
                 break;
             case FGFR3_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, FGFR3_ONTOX);
+                selectedModel = new ismOntoxAssay(FGFR3_ONTOX);
                 break;
             case FGFR4_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, FGFR4_ONTOX);
+                selectedModel = new ismOntoxAssay(FGFR4_ONTOX);
                 break;
             case GR_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, GR_ONTOX);
+                selectedModel = new ismOntoxAssay(GR_ONTOX);
                 break;
             case HDEAC_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, HDEAC_ONTOX);
+                selectedModel = new ismOntoxAssay(HDEAC_ONTOX);
                 break;
             case OAT1_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, OAT1_ONTOX);
+                selectedModel = new ismOntoxAssay(OAT1_ONTOX);
                 break;
             case PPARA_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, PPARA_ONTOX);
+                selectedModel = new ismOntoxAssay(PPARA_ONTOX);
                 break;
             case PPARD_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, PPARD_ONTOX);
+                selectedModel = new ismOntoxAssay(PPARD_ONTOX);
                 break;
             case PPARG_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, PPARG_ONTOX);
+                selectedModel = new ismOntoxAssay(PPARG_ONTOX);
                 break;
             case THRA_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, THRA_ONTOX);
+                selectedModel = new ismOntoxAssay(THRA_ONTOX);
                 break;
             case THRB_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, THRB_ONTOX);
+                selectedModel = new ismOntoxAssay(THRB_ONTOX);
                 break;
             case TTR_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, TTR_ONTOX);
+                selectedModel = new ismOntoxAssay(TTR_ONTOX);
                 break;
             case VGSC_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, VGSC_ONTOX);
+                selectedModel = new ismOntoxAssay(VGSC_ONTOX);
                 break;
             case WNT_ONTOX:
-                selectedModel = new ismOntoxAssay(false, null, WNT_ONTOX);
+                selectedModel = new ismOntoxAssay(WNT_ONTOX);
                 break;
             case DIO1_EDSCREEN:
                 selectedModel = new ismDio1();

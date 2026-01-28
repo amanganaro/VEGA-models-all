@@ -4,6 +4,8 @@ import insilico.apicalcardiotox.ApicalCardioTox;
 import insilico.cardiotoxMultitask.CardioToxMultitask;
 import insilico.core.exception.GenericFailureException;
 import insilico.core.exception.InitFailureException;
+import insilico.core.exception.InitFailurePythonException;
+import insilico.core.exception.PythonModelResourceNotFoundException;
 import insilico.core.model.InsilicoModel;
 import insilico.core.model.InsilicoModelConsensus;
 import insilico.core.model.runner.iInsilicoModelRunnerMessenger;
@@ -580,7 +582,7 @@ public class ModelDispatcher {
         return Endpoints;
     }
 
-    public ArrayList<VegaEndpointWithClass> GetOrganizedModelList() throws InitFailureException, GenericFailureException {
+    public ArrayList<VegaEndpointWithClass> GetOrganizedModelList() throws InitFailureException, GenericFailureException, PythonModelResourceNotFoundException {
         ArrayList<VegaEndpointWithClass> endpointsList = new ArrayList<>();
         VegaEndpointWithClass ep;
 
@@ -918,7 +920,7 @@ public class ModelDispatcher {
      * @throws Exception
      * @throws InitFailureException
      */
-    public static InsilicoModel GetModelFromTag(String Tag) throws ModelNotFoundException, InitFailureException {
+    public static InsilicoModel GetModelFromTag(String Tag) throws ModelNotFoundException, InitFailureException, PythonModelResourceNotFoundException, InitFailurePythonException {
 
         InsilicoModel selectedModel = null;
         switch (Tag) {
@@ -1359,7 +1361,7 @@ public class ModelDispatcher {
         return selectedModel;
     }
 
-    public static InsilicoModel GetModelFromTag(String Tag, iInsilicoModelRunnerMessenger messenger, boolean bypassCondaCheck) throws ModelNotFoundException, InitFailureException, GenericFailureException{
+    public static InsilicoModel GetModelFromTag(String Tag, iInsilicoModelRunnerMessenger messenger, boolean bypassCondaCheck) throws ModelNotFoundException, InitFailureException, GenericFailureException, PythonModelResourceNotFoundException, InitFailurePythonException{
 
         InsilicoModel selectedModel = null;
         switch (Tag) {

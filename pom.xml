@@ -6,32 +6,49 @@
 
     <groupId>InSilico</groupId>
     <artifactId>VegaModels-All</artifactId>
-    <version>1.2.4</version>
+    <version>1.2.5</version>
+    <name>VegaModels-All</name>
+    <description>
+        Container project where all models of VEGA are grouped and divided into endpoints.
+    </description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <skipTests>true</skipTests>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>amcc-maven-snapshots</id>
-            <url>http://tech-amcc.it:8081/repository/amcc-maven-snapshots/</url>
-        </snapshotRepository>
         <repository>
-            <id>amcc-maven-releases</id>
-            <url>http://tech-amcc.it:8081/repository/amcc-maven-releases/</url>
+            <id>protoqsar-maven-releases</id>
+            <url>https://nexus.protoqsar.com/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 
     <repositories>
         <repository>
-            <id>maven-public</id>
-            <url>http://tech-amcc.it:8081/repository/maven-public/</url>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <!-- public repo hosted by ProtoQSAR, access with maven-public:maven-public -->
+            <id>protoqsar-maven-public</id>
+            <url>https://nexus.protoqsar.com/repository/maven-public/</url>
         </repository>
     </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>InSilico</groupId>
+                <artifactId>VegaModels-Human</artifactId>
+                <version>1.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
 

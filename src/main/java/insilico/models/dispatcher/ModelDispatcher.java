@@ -18,6 +18,7 @@ import insilico.steroidogenesisedscreen.ismSteroidogenesisEDScreen;
 import insilico.ttr.ismTTR;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ModelDispatcher {
@@ -245,6 +246,20 @@ public class ModelDispatcher {
         System.out.println("No.\tSection\tTag\tModel\tVersion");
         for (String s : res)
             System.out.println(s);
+    }
+
+    public List<InsilicoModel> getCompleteModelList() throws ModelNotFoundException, InitFailureException {
+        ArrayList<InsilicoModel> models = new ArrayList<>();
+        ArrayList<VegaEndpoint> Endpoints = GetOrganizedModels();
+
+        int idx = 1;
+        for (VegaEndpoint EP : Endpoints) {
+            for (String modelTag : EP.Models) {
+                InsilicoModel model = GetModelFromTag(modelTag);
+                models.add(model);
+            }
+        }
+        return models;
     }
 
     /**

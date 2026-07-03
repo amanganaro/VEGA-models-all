@@ -2,8 +2,16 @@ package models;
 
 import insilico.core.model.InsilicoModel;
 
-public interface ModelValidator {
+public class ModelValidator implements models.interfaces.iModelValidator {
 
-    InsilicoModel model();
+    InsilicoModel model;
 
+    public ModelValidator(InsilicoModel model) {
+        this.model = model;
+    }
+
+    @Override
+    public InsilicoModel model() {
+        return model;
+    }
 }

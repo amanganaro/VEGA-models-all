@@ -57,7 +57,6 @@ public class DatasetGenerator {
 
         InsilicoModelRunnerByMolecule runner = new InsilicoModelRunnerByMolecule();
 
-
         Path outputPath = Paths.get("src", "test", "resources", "groundTruth.csv");
 
         try (CSVWriter writer = new CSVWriter(new FileWriter(outputPath.toFile()), '\t',
@@ -69,7 +68,9 @@ public class DatasetGenerator {
             header.add("NAME");
             header.add("SMILES");
             for (InsilicoModel model : models) {
-                header.addAll(List.of(model.GetResultsName()));
+                header.addAll(Arrays.stream(model.GetResultsName()).map( result -> {
+                    return model.getInfo().getKey()+"-"+result;
+                }).toList());
                 runner.AddModel(model);
             }
             writer.writeNext(header.toArray(new String[0]));

@@ -139,6 +139,7 @@ public class ModelDispatcher {
     public final static String MELTING_POINT = "MELTING_POINT";
     public final static String MELTING_POINT_KNN = "MELTING_POINT_KNN";
     public final static String HYDROLYSIS_CORAL = "HYDROLYSIS_CORAL";
+    public final static String HENRY_CORAL = "HENRY_CORAL";
     public final static String HENRY_OPERA = "HENRY_OPERA";
     public final static String KOA_OPERA = "KOA_OPERA";
     public final static String KOC_OPERA = "KOC_OPERA";
@@ -538,6 +539,7 @@ public class ModelDispatcher {
         Endpoints.add(ep);
 
         ep = new VegaEndpoint("Henry's law constant", SECTION_PHYS);
+        ep.AddModel(HENRY_CORAL);
         ep.AddModel(HENRY_OPERA);
         Endpoints.add(ep);
 
@@ -1221,6 +1223,9 @@ public class ModelDispatcher {
             case HYDROLYSIS_CORAL:
                 selectedModel = new insilico.hydrolysis_coral.ismHydrolysisCoral();
                 break;
+            case HENRY_CORAL:
+                selectedModel = new insilico.henryslawcoral.ismHenrysLawCoral();
+                break;
             case HENRY_OPERA:
                 selectedModel = new insilico.henryslaw.ismHenrysLawOpera();
                 break;
@@ -1661,6 +1666,9 @@ public class ModelDispatcher {
                 break;
             case HYDROLYSIS_CORAL:
                 selectedModel = new insilico.hydrolysis_coral.ismHydrolysisCoral();
+                break;
+            case HENRY_CORAL:
+                selectedModel = new insilico.henryslawcoral.ismHenrysLawCoral();
                 break;
             case HENRY_OPERA:
                 selectedModel = new insilico.henryslaw.ismHenrysLawOpera();

@@ -6,7 +6,7 @@
 
     <groupId>InSilico</groupId>
     <artifactId>VegaModels-All</artifactId>
-    <version>1.2.5</version>
+    <version>1.2.6</version>
     <name>VegaModels-All</name>
     <description>
         Container project where all models of VEGA are grouped and divided into endpoints.
@@ -17,6 +17,8 @@
         <skipTests>true</skipTests>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <!-- Version of the InSilico Core, overridable from the command line: -Dvega.core.version=1.3.x -->
+        <vega.core.version>1.3.22</vega.core.version>
     </properties>
 
     <distributionManagement>
@@ -39,6 +41,20 @@
     </repositories>
 
     <dependencies>
+
+        <!--
+            The core is declared here, and not only inherited through the models, for two reasons. This project
+            compiles against it (the dispatcher uses InsilicoModel, the runners and the core exceptions), so it has
+            to be a dependency of its own. And a direct declaration wins the version resolution over every version
+            the models bring in transitively: the models that are not republished after a core release keep naming
+            the older core in their poms, and without this the whole set would silently run on that older core,
+            both here and in the applications that resolve this artifact.
+        -->
+        <dependency>
+            <groupId>InSilico</groupId>
+            <artifactId>Core</artifactId>
+            <version>${vega.core.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>

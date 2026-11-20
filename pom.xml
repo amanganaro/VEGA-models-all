@@ -6,7 +6,7 @@
 
     <groupId>InSilico</groupId>
     <artifactId>VegaModels-All</artifactId>
-    <version>1.2.7</version>
+    <version>1.2.8</version>
     <name>VegaModels-All</name>
     <description>
         Container project where all models of VEGA are grouped and divided into endpoints.
@@ -355,7 +355,7 @@
         <dependency>
             <groupId>InSilico</groupId>
             <artifactId>VegaModels-CramerToxTree</artifactId>
-            <version>1.0.2</version>
+            <version>1.1.0</version>
         </dependency>
 
         <dependency>
@@ -514,7 +514,7 @@
         <dependency>
             <groupId>InSilico</groupId>
             <artifactId>VegaModels-VerhaarToxtree</artifactId>
-            <version>1.0.1</version>
+            <version>1.1.0</version>
         </dependency>
 
         <dependency>

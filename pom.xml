@@ -6,7 +6,7 @@
 
     <groupId>InSilico</groupId>
     <artifactId>VegaModels-All</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
     <name>VegaModels-All</name>
     <description>
         Container project where all models of VEGA are grouped and divided into endpoints.
@@ -127,7 +127,7 @@
         <dependency>
             <groupId>InSilico</groupId>
             <artifactId>VegaModels-DevtoxPG</artifactId>
-            <version>1.1.3</version>
+            <version>1.1.4</version>
         </dependency>
 
         <dependency>
@@ -804,13 +804,13 @@
         <dependency>
             <groupId>InSilico</groupId>
             <artifactId>VegaModels-Dio1</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
 
         <dependency>
                 <groupId>InSilico</groupId>
                 <artifactId>VegaModels-SteroidogenesisEDScreen</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.1</version>
         </dependency>
 
         <dependency>
